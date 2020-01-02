@@ -1,20 +1,17 @@
-import React, {Component} from "react";
+import React from "react";
 
-class AnimeItem extends Component {
-	state = {};
-	render() {
-		const {title, public_url} = this.props.anime;
-		return (
-			<div className='anime'>
-				<h3>{title}</h3>
-				{public_url && (
-					<a href={public_url} target='blank'>
-						公式サイト
-					</a>
-				)}
-			</div>
-		);
-	}
+function AnimeItem() {
+	const {title, public_url} = props.anime;
+	return (
+		<div className='anime'>
+			<h3>{title}</h3>
+			{public_url && (
+				<a href={public_url} target='blank'>
+					公式サイト
+				</a>
+			)}
+		</div>
+	);
 }
 
 export default AnimeItem;
