@@ -14,6 +14,7 @@ class App extends Component {
 			this.setState({isLoading: true});
 			const response = await this.getAnime();
 			const animes = await response.json();
+			console.log(animes);
 			this.setState({animes, isLoading: false});
 		} catch (err) {
 			console.error(err);
