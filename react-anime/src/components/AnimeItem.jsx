@@ -12,7 +12,7 @@ function AnimeItem(props) {
 			)}
 			{twitter_account && (
 				<a href={`https://twitter.com/${twitter_account}`} target='_blank'>
-					公式twitter
+					公式Twitter
 				</a>
 			)}
 		</div>
