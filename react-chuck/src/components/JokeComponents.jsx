@@ -1,10 +1,9 @@
 import React from "react";
 
 function JokeComponents(props) {
-	const {joke} = props.data;
 	return (
 		<div id='joke-components'>
-			<p>{joke}</p>
+			<p>{props.joke}</p>
 		</div>
 	);
 }

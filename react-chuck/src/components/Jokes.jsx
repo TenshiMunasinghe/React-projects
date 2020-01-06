@@ -3,12 +3,11 @@ import JokeComponents from "./JokeComponents";
 
 class Jokes extends Component {
 	state = {
-		joke: ""
+		joke: []
 	};
+
 	componentDidMount = async () => {
-		let data = await this.getJokes();
-		let joke = data.value;
-		this.setState({joke});
+		this.generateJoke();
 	};
 
 	getJokes = async () => {
@@ -16,10 +15,25 @@ class Jokes extends Component {
 		return response.json();
 	};
 
+	generateJoke = async () => {
+		let data = await this.getJokes();
+		let jokeText = data.value;
+		this.setState(prev => {
+			let joke = [...prev.joke];
+			joke[joke.length] = jokeText;
+			return {joke};
+		});
+	};
+
 	render() {
 		return (
 			<React.Fragment>
-				<JokeComponents data={this.state} />
+				<ul>
+					{this.state.joke.map((joke, i) => {
+						return <JokeComponents key={i} joke={joke} />;
+					})}
+				</ul>
+				<button onClick={this.generateJoke}>Generate Joke</button>
 			</React.Fragment>
 		);
 	}
