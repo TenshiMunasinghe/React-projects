@@ -16,9 +16,10 @@ class TodoInput extends Component {
 	};
 
 	render() {
+		const {isEdit, handleSubmit} = this.props;
 		let btClass;
 		let btnText;
-		if (this.props.isEdit) {
+		if (isEdit) {
 			btClass = "success";
 			btnText = "edit";
 		} else {
@@ -31,7 +32,7 @@ class TodoInput extends Component {
 				<form
 					onSubmit={e => {
 						e.preventDefault();
-						this.props.handleSubmit(this.state.input, this.inputRef);
+						handleSubmit(this.state.input, this.inputRef);
 						this.setState({input: ""});
 					}}>
 					<div className='input-group'>

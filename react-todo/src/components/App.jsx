@@ -22,7 +22,10 @@ class App extends Component {
 		inputRef.focus();
 	};
 
-	handleReset = () => {
+	handleReset = confirm => {
+		if (!confirm) {
+			return;
+		}
 		this.setState({list: []});
 	};
 
