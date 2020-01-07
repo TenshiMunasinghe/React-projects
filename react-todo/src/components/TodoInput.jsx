@@ -10,18 +10,34 @@ class TodoInput extends Component {
 		this.setState({input: value});
 	};
 
+	handleEdit = text => {
+		this.setState({input: text});
+		this.inputRef.focus();
+	};
+
 	render() {
+		let btClass;
+		let btnText;
+		if (this.props.isEdit) {
+			btClass = "success";
+			btnText = "edit";
+		} else {
+			btClass = "primary";
+			btnText = "add item";
+		}
+
 		return (
 			<div className='card card-body my3'>
 				<form
 					onSubmit={e => {
 						e.preventDefault();
-						this.props.handleSubmit(this.state.input);
+						this.props.handleSubmit(this.state.input, this.inputRef);
 						this.setState({input: ""});
 					}}>
 					<div className='input-group'>
 						<div className='input-group-prepend'>
-							<div className='input-group-text bg-primary text-white'>
+							<div
+								className={`input-group-text bg-${btClass} text-white text-capitalize`}>
 								<i className='fas fa-book'></i>
 							</div>
 						</div>
@@ -31,10 +47,13 @@ class TodoInput extends Component {
 							placeholder='add a todo item'
 							onChange={this.handleChange}
 							value={this.state.input}
+							ref={ref => (this.inputRef = ref)}
 						/>
 					</div>
-					<button type='submit' className='btn btn-block btn-primary mt-3'>
-						add item
+					<button
+						type='submit'
+						className={`btn btn-block btn-${btClass} mt-3 text-capitalize`}>
+						{btnText}
 					</button>
 				</form>
 			</div>

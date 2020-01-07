@@ -11,7 +11,15 @@ class TodoList extends Component {
 			<ul className='list-group my-5'>
 				<h3 className='text-capitalize text-center'>todo list</h3>
 				{this.props.list.map((e, i) => {
-					return <TodoItem key={i} text={e} />;
+					return (
+						<TodoItem
+							key={i}
+							id={i}
+							text={e}
+							handleEdit={this.props.handleEdit}
+							handleDelete={this.props.handleDelete}
+						/>
+					);
 				})}
 				<button
 					type='button'
