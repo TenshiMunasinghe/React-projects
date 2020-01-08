@@ -24,7 +24,6 @@ class MemeGenerator extends Component {
 		let {randomImg, allMemeImgs} = this.state;
 		const index = Math.floor(Math.random() * allMemeImgs.length);
 		randomImg = allMemeImgs[index].url;
-		console.log(randomImg);
 		this.setState({randomImg});
 	};
 
