@@ -2,6 +2,9 @@ import React, {Component} from "react";
 
 class TodoItem extends Component {
 	state = {};
+	style = {
+		cursor: "pointer"
+	};
 	render() {
 		const {text, id, handleEdit, handleDelete} = this.props;
 		return (
@@ -10,6 +13,7 @@ class TodoItem extends Component {
 				<div className='todo-icon'>
 					<span
 						className='mx-2 text-success'
+						style={this.style}
 						onClick={() => {
 							handleEdit(text, id);
 						}}>
@@ -17,6 +21,7 @@ class TodoItem extends Component {
 					</span>
 					<span
 						className='mx-2 text-danger'
+						style={this.style}
 						onClick={() => {
 							let conf = window.confirm(
 								"Do you really want to delete this item?"
