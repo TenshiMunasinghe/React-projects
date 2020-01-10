@@ -5,6 +5,10 @@ class TodoInput extends Component {
 		input: ""
 	};
 
+	handleReset = () => {
+		this.setState({input: ""});
+	};
+
 	handleChange = e => {
 		let {value} = e.target;
 		this.setState({input: value});

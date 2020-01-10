@@ -26,7 +26,8 @@ class App extends Component {
 		if (!confirm) {
 			return;
 		}
-		this.setState({list: []});
+		this.input.handleReset();
+		this.setState({list: [], isEdit: false});
 	};
 
 	handleEdit = (text, id) => {
