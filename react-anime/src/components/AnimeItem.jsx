@@ -6,12 +6,15 @@ function AnimeItem(props) {
 		<div className='anime'>
 			<h3>{title}</h3>
 			{public_url && (
-				<a href={public_url} target='_blank'>
+				<a href={public_url} target='_blank' rel='noopener noreferrer'>
 					公式サイト
 				</a>
 			)}
 			{twitter_account && (
-				<a href={`https://twitter.com/${twitter_account}`} target='_blank'>
+				<a
+					href={`https://twitter.com/${twitter_account}`}
+					target='_blank'
+					rel='noopener noreferrer'>
 					公式Twitter
 				</a>
 			)}

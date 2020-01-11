@@ -27,7 +27,7 @@ class Typing extends Component {
 
 	async getWords(num) {
 		let response = await fetch(
-			`https://random-word-api.herokuapp.com/word?key=SH7VNG5I&number=${num}`
+			`https://random-word-api.herokuapp.com/word?key=IW8OWAEM&number=${num}`
 		);
 		return response.json();
 	}

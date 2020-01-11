@@ -7,16 +7,17 @@ class App extends Component {
 		characters: []
 	};
 
-	componentDidMount() {
-		this.setState({isLoading: true});
-		this.getCharacters()
-			.then(resp => {
-				let characters = [].concat(...resp);
-				return characters;
-			})
-			.then(characters => this.setState({characters, isLoading: false}))
-			.catch(err => console.error(err));
-	}
+	componentDidMount = async () => {
+		try {
+			this.setState({isLoading: true});
+			let response = await this.getCharacters();
+			let characters = [].concat(...response);
+
+			this.setState({characters, isLoading: false});
+		} catch (e) {
+			throw new Error("failed to fetch data");
+		}
+	};
 
 	async getCharacters() {
 		let characters = [];
@@ -28,7 +29,7 @@ class App extends Component {
 		while (next) {
 			response = await fetch(next);
 			json = await response.json();
-			await characters.push();
+			await characters.push(json.results);
 			next = json.next;
 		}
 		return characters;

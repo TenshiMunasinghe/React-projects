@@ -2,7 +2,6 @@ import React from "react";
 
 function Character(props) {
 	let {name, height, mass, gender} = props.character;
-	console.log(props.character);
 	return (
 		<div className='anime'>
 			<h3>{name}</h3>

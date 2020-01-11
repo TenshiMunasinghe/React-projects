@@ -16,7 +16,7 @@ class App extends Component {
 			const animes = await response.json();
 			this.setState({animes, isLoading: false});
 		} catch (err) {
-			console.error(err);
+			throw new Error("failed to fetch data");
 		}
 	};
 
@@ -29,19 +29,19 @@ class App extends Component {
 				`https://api.moemoe.tokyo/anime/v1/master/${value}${url}`
 			);
 			return response;
-		} else if (name === "cour") {
+		}
+		if (name === "cour") {
 			value === "all" ? (url = "") : (url = `/${value}`);
 			const response = await fetch(
 				`https://api.moemoe.tokyo/anime/v1/master/${year}${url}`
 			);
 			return response;
-		} else {
-			cour === "all" ? (url = "") : (url = `/${cour}`);
-			const response = await fetch(
-				`https://api.moemoe.tokyo/anime/v1/master/${year}${url}`
-			);
-			return response;
 		}
+		cour === "all" ? (url = "") : (url = `/${cour}`);
+		const response = await fetch(
+			`https://api.moemoe.tokyo/anime/v1/master/${year}${url}`
+		);
+		return response;
 	}
 
 	handleChange = async ev => {
