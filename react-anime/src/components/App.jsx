@@ -54,6 +54,14 @@ class App extends Component {
 		this.setState({animes, [name]: value, isLoading: false});
 	};
 
+	scrollTop = () => {
+		let currentY = window.pageYOffset;
+		window.scrollTo(0, Math.floor(currentY * 0.6));
+		if (currentY > 0) {
+			window.setTimeout(this.scrollTop, 10);
+		}
+	};
+
 	render() {
 		let {isLoading, animes, year, cour} = this.state;
 		let season;
@@ -77,43 +85,49 @@ class App extends Component {
 			);
 		} else {
 			return (
-				<div className='flex'>
-					<form onSubmit={e => e.preventDefault}>
-						<label htmlFor='yearList'>年を選んでください</label>
-						<select
-							name='year'
-							id='yearList'
-							onChange={this.handleChange}
-							value={year}>
-							<option value='2014'>2014</option>
-							<option value='2015'>2015</option>
-							<option value='2016'>2016</option>
-							<option value='2017'>2017</option>
-							<option value='2018'>2018</option>
-							<option value='2019'>2019</option>
-						</select>
-						<label htmlFor='season'>季節を選んでください</label>
-						<select
-							name='cour'
-							id='season'
-							onChange={this.handleChange}
-							value={cour}>
-							<option value='1'>冬</option>
-							<option value='2'>春</option>
-							<option value='3'>夏</option>
-							<option value='4'>秋</option>
-							<option value='all'>全て</option>
-						</select>
-					</form>
-					<h2>
-						{year}年{season && season}アニメ
-					</h2>
-					<ul>
-						{animes.map(anime => {
-							return <AnimeItem key={anime.id} anime={anime} />;
-						})}
-					</ul>
-				</div>
+				<>
+					<button type='button' onClick={this.scrollTop} id='scroll-top'>
+						&#9650;
+					</button>
+
+					<div className='flex'>
+						<form onSubmit={e => e.preventDefault}>
+							<label htmlFor='yearList'>年を選んでください</label>
+							<select
+								name='year'
+								id='yearList'
+								onChange={this.handleChange}
+								value={year}>
+								<option value='2014'>2014</option>
+								<option value='2015'>2015</option>
+								<option value='2016'>2016</option>
+								<option value='2017'>2017</option>
+								<option value='2018'>2018</option>
+								<option value='2019'>2019</option>
+							</select>
+							<label htmlFor='season'>季節を選んでください</label>
+							<select
+								name='cour'
+								id='season'
+								onChange={this.handleChange}
+								value={cour}>
+								<option value='1'>冬</option>
+								<option value='2'>春</option>
+								<option value='3'>夏</option>
+								<option value='4'>秋</option>
+								<option value='all'>全て</option>
+							</select>
+						</form>
+						<h2>
+							{year}年{season && season}アニメ
+						</h2>
+						<ul>
+							{animes.map(anime => {
+								return <AnimeItem key={anime.id} anime={anime} />;
+							})}
+						</ul>
+					</div>
+				</>
 			);
 		}
 	}
