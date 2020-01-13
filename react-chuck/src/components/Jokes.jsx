@@ -6,10 +6,6 @@ class Jokes extends Component {
 		joke: []
 	};
 
-	componentDidMount = async () => {
-		this.generateJoke();
-	};
-
 	getJokes = async () => {
 		let response = await fetch("https://api.chucknorris.io/jokes/random");
 		return response.json();
@@ -27,14 +23,14 @@ class Jokes extends Component {
 
 	render() {
 		return (
-			<React.Fragment>
-				<ul>
+			<section>
+				<button onClick={this.generateJoke}>Generate Joke</button>
+				<ul className='jokes'>
 					{this.state.joke.map((joke, i) => {
 						return <JokeComponents key={i} joke={joke} />;
 					})}
 				</ul>
-				<button onClick={this.generateJoke}>Generate Joke</button>
-			</React.Fragment>
+			</section>
 		);
 	}
 }
