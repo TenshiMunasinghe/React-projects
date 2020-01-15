@@ -12,6 +12,14 @@ export default class FeaturedRooms extends Component {
 			return <Room key={room.id} room={room} />;
 		});
 
+		if (rooms.length === 0) {
+			return (
+				<div className='empty-search'>
+					<h3>there are no rooms that are currently featured</h3>
+				</div>
+			);
+		}
+
 		return (
 			<section className='featured-rooms'>
 				<Title title='featured rooms' />
